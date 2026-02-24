@@ -69,7 +69,7 @@ export default async function RoomDetailsPage({ params }: Props) {
           <h2 className="text-2xl font-serif mb-8">Room Amenities</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-6 gap-x-4 mb-12">
             <div className="flex items-center gap-4 text-gray-600 text-sm">
-              <Wind className="w-5 h-5 text-gray-400 font-light" /> Climate Control
+              <Wind className="w-5 h-5 text-gray-500 font-light" /> Climate Control
             </div>
             <div className="flex items-center gap-4 text-gray-600 text-sm">
               <Coffee className="w-5 h-5 text-gray-400 font-light" /> Espresso Machine
