@@ -1,0 +1,40 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  // NOTICE: The url line is completely gone!
+}
+
+
+model Room {
+  id          String    @id @default(uuid())
+  name        String    // e.g., "Ocean View Villa"
+  type        String    // e.g., "Villa", "Suite"
+  price       Int       // Store in lowest denomination (paise/cents)
+  size        String    // e.g., "850 sq ft"
+  capacity    Int       // Max guests
+  description String    @db.Text
+  images      String[]  // Array of image URLs
+  features    String[]  // Array of amenities (e.g., ["Wi-Fi", "Pool"])
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  bookings    Booking[]
+}
+
+model Booking {
+  id          String    @id @default(uuid())
+  roomId      String
+  room        Room      @relation(fields: [roomId], references: [id])
+  guestName   String
+  guestEmail  String
+  guestPhone  String?
+  checkIn     DateTime
+  checkOut    DateTime
+  guestsCount Int
+  totalAmount Int
+  status      String    @default("PENDING") // PENDING, CONFIRMED, CANCELLED
+  createdAt   DateTime  @default(now())
+}
